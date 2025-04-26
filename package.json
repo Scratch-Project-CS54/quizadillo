@@ -20,6 +20,7 @@
   "homepage": "https://github.com/pink-fairy-armadillos-54/quizadillo#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "eslint": "^9.25.1"
   }
 }
