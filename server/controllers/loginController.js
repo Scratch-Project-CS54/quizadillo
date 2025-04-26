@@ -25,5 +25,27 @@ loginController.createUser = async(req, res, next) => {
         await newLogin.save();
 
         res.locals.newLogin = newLogin;
+        return res.status(201).json({ login: newLogin });
     }
+    catch (err){
+        console.log('error in createUser:', err.message)
+        return next({err: `loginController.createUser failed: ${err.message}`});
+    };
 }
+
+//verify the user to login
+loginController.verifyUser = async(req, res, next) => {
+    const { username, password} = req.body;
+    try{
+        const existing = await Login.findOne({username, password});
+        if(!existing){return res.status(401).json({message: 'invalid user or password'})};
+        
+        req.session = {username};
+        res.locals.login = existing;
+        return res.status(200).json({login: existing});
+    }
+    catch(err){return next({err: `loginController.verifyUser failed ${err.message}`})};
+}
+
+
+export default loginController;
