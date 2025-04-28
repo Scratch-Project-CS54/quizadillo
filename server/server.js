@@ -1,20 +1,15 @@
 import express from 'express';
 import dotenv from 'dotenv';
-<<<<<<< HEAD
 import cors from 'cors';
 import mongoose from 'mongoose';
 
 import triviaRoute from './routes/triviaRoute.js';
 import loginRoute from './routes/loginRoute.js';
-=======
-import triviaRoutes from './routes/triviaRoutes.js';
->>>>>>> aaabb58 (game page done, pending for test)
 
 dotenv.config();
 
 const app = express();
 
-<<<<<<< HEAD
 app.use(
   cors({
     origin: 'http://localhost:5173', // your frontend
@@ -22,10 +17,6 @@ app.use(
     credentials: true,
   })
 );
-=======
-import cors from 'cors';
-app.use(cors());
->>>>>>> aaabb58 (game page done, pending for test)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -53,10 +44,5 @@ const connectDB = async () => {
 connectDB();
 
 // Listener
-<<<<<<< HEAD
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`🎁🎁🎁 Server running on port ${PORT}`));
-=======
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
->>>>>>> aaabb58 (game page done, pending for test)
