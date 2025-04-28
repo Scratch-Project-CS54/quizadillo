@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import QuestionCard from '../questioncard/questioncard';
 import styles from './game.module.css';
 
 export default function Game() {
@@ -30,6 +30,12 @@ export default function Game() {
     setCurrentQuestionIndex((prev) => prev + 1);
   }
 
+  return (
+    <div>
+      <QuestionCard
+        questionObj={questions[currentQuestionIndex]}
+        handleAnswer={handleAnswer}
+      />
 
       <p>Score: {score}</p>
     </div>
