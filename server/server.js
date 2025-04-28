@@ -10,15 +10,24 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173', // your frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Route to new game
-app.use('/', triviaRoute);
+app.post('/api/signup', (req, res) => {
+  res.json({ message: 'sign up successful' });
+});
 
-//route to login
-app.use('/', loginRoute);
+// Routes
+app.use('/api', loginRoute);
+app.use('/', triviaRoute);
 
 const connectDB = async () => {
   try {
@@ -26,14 +35,14 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log('👌 MongoDB connected');
+    console.log('👌👌 MongoDB connected');
   } catch (error) {
-    console.log('👎🏻 MongoDB connection error:', error.message);
+    console.log('👎🏻👎🏻 MongoDB connection error:', error.message);
     throw new Error('MongoDB connection failed');
   }
 };
 connectDB();
 
 // Listener
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`🎁🎁🎁 Server running on port ${PORT}`));
