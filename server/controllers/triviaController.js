@@ -20,7 +20,6 @@ triviaController.getQuestions = async (req, res) => {
 
     const data = await response.json();
     res.json(data.results);
-    
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error fetching trivia questions' });
