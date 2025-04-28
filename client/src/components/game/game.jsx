@@ -97,7 +97,11 @@ export default function Game() {
 
   async function handleAnswerSubmit(answer) {
     const url = 'http://localhost:4000/questions';
-    const body = { ...questions[currentQuestionIndex], userAnswer: answer };
+    const body = {
+      question: questions[currentQuestionIndex]?.question,
+      userAnswer: answer,
+      correctAnswer: questions[currentQuestionIndex]?.correct_answer,
+    };
 
     try {
       const res = await fetch(url, {

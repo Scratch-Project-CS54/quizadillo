@@ -1,13 +1,14 @@
 import express from 'express';
-import QuizResult from '../models/historyModel.js';
+import History from '../models/historyModel.js';
 const router = express.Router();
 
 const triviaController = {};
 
 triviaController.saveHistory = async (req, res, next) => {
   const { question, userAnswer, correctAnswer } = req.body;
+  console.log(req.body);
   try {
-    const newHistory = new QuizResult({ question, userAnswer, correctAnswer });
+    const newHistory = new History({ question, userAnswer, correctAnswer });
     await newHistory.save();
     return res.status(200).json({ result: newHistory });
   } catch (err) {
@@ -18,7 +19,7 @@ triviaController.saveHistory = async (req, res, next) => {
 
 triviaController.getHistory = async (req, res, next) => {
   try {
-    const history = await QuizResult.find({});
+    const history = await History.find({});
     res.status(200).json(history);
   } catch (err) {
     console.log('error in getHistory:', err.message);
