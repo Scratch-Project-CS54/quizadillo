@@ -37,7 +37,7 @@ export default function Profile() {
 
   return (
     <div>
-      <h1 className={styles.Title}>My Profile</h1>
+      <h1 className={styles.title}>My Profile</h1>
 
       {/* Score Summary */}
       <table className={styles.scoreBoard}>
@@ -54,7 +54,7 @@ export default function Profile() {
             <td>{score}</td>
             <td>{totalQuestions}</td>
             <td>{percentage}%</td>
-            <td>{new Date(quizResult.date).toLocaleDateString()}</td>
+            <td>{new Date(quizResult.date).toLocaleDateString()}</td> {/*might be able to pull this from database */}
           </tr>
         </tbody>
       </table>

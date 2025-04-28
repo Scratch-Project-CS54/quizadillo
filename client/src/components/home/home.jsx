@@ -1,23 +1,41 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './home.modules.css';
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const lsbtnHandleClick = () => {
+    navigate('../login/login.jsx');
+  };
+
+  const homeHandleClick = () => {
+    navigate('./home.jsx');
+  };
+
+  const profileHandleClick = () => {
+    navigate('../profile/profile.jsx');
+  };
+
+  const startHandleClick = () => {
+    navigate('../game/game.jsx');
+  };
+
   return (
-    <div>
-      <h1 className={styles.title}>Quizadillo:</h1>
-      <h3 className={styles.subtitle}>Your Trivia Quiz Practice Game</h3>
-      <a>
-        <img src="../../assets/logo.png" alt="Quizadillo"></img>
-      </a>
+    <div className={styles.page}>
+      {/*prettier-ignore*/}
+      <aside className={styles.btns}>
+        <button type="button" onClick={(lsbtnHandleClick)}>Login/Sign-Up</button>
+        <button type ="button" onClick={(homeHandleClick)}>Home</button>
+        <button type ="button" onClick={(profileHandleClick)}>HMy Profile</button>
+        <button type ="button" onClick={(startHandleClick)}>HStart Game</button>
+      </aside>
 
-      <div className={styles.buttons}>
-        <button>Login/Sign-Up</button>
-        <button>Home</button>
-        <button>Go to My Profile</button>
-        <button>Start Game</button>
-      </div>
-
-      <p className={styles.tagLine}>Get better at Trivia - Impress those worth impressing</p>
+      <main className={styles.mainContent}>
+        <h1 className={styles.title}>Quizadillo</h1>
+        <img className={styles.logo} src="/logo.png" alt="Quizadillo Logo" />
+        <p className={styles.tagLine}>Get better at Trivia — Impress those worth impressing!</p>
+      </main>
     </div>
   );
 }
