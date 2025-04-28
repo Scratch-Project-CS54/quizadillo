@@ -5,16 +5,13 @@ import styles from './login.module.css';
 export default function Login() {
   const [action, setAction] = useState('Sign Up');
   const [username, setUsername] = useState('');
-  const [pw, setPw] = useState('');
+  const [password, setPassword] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const url =
-      action === 'Sign Up'
-        ? 'http://localhost:3000/api/signup'
-        : 'http://localhost:3000/api/login';
+    const url = action === 'Sign Up' ? 'http://localhost:4000/api/signup' : 'http://localhost:4000/api/login';
 
-    const body = { username, pw };
+    const body = { username, password };
     try {
       const res = await fetch(url, {
         method: 'POST',
@@ -38,29 +35,18 @@ export default function Login() {
         {action}
       </h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='Username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type='password'
-          placeholder='Password'
-          onChange={(e) => setPw(e.target.value)}
-        />
-        <button type='submit'>{action}</button>
+        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+        <button type="submit">{action}</button>
 
         <div>
           {action === 'Sign Up' ? (
             <p>
-              Alreay have an account?{' '}
-              <button onClick={() => setAction('Log In')}>Log In</button>
+              Alreay have an account? <button onClick={() => setAction('Log In')}>Log In</button>
             </p>
           ) : (
             <p>
-              New here?{' '}
-              <button onClick={() => setAction('Sign Up')}>Sign Up</button>
+              New here? <button onClick={() => setAction('Sign Up')}>Sign Up</button>
             </p>
           )}
         </div>

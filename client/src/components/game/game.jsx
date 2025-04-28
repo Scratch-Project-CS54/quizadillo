@@ -14,7 +14,7 @@ export default function Game() {
 
   function getQuestions() {
     //const randomQ = Math.floor(Math.random() * 50);
-    fetch('http://localhost:5000/api/trivia/questions')
+    fetch('http://localhost:5000/questions')
       .then((res) => res.json())
       .then((data) => {
         setQuestions(data); // data is an array of questions!
@@ -24,18 +24,14 @@ export default function Game() {
   }
 
   function handleAnswer(answer) {
-    if (answer === questions[currentQuestionIndex].correct_answer)
-      setScore((prev) => prev + 1);
+    if (answer === questions[currentQuestionIndex].correct_answer) setScore((prev) => prev + 1);
 
     setCurrentQuestionIndex((prev) => prev + 1);
   }
 
   return (
     <div>
-      <QuestionCard
-        questionObj={questions[currentQuestionIndex]}
-        handleAnswer={handleAnswer}
-      />
+      <QuestionCard questionObj={questions[currentQuestionIndex]} handleAnswer={handleAnswer} />
 
       <p>Score: {score}</p>
     </div>
