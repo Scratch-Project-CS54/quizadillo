@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import QuestionCard from '../questioncard/questioncard';
-import styles from './game.module.css';
+//import styles from './game.module.css';
 
 export default function Game() {
   const [questions, setQuestions] = useState([]); // store list of all fetched questions
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [score, setScore] = useState(0);
 
   useEffect(() => {
@@ -19,7 +18,6 @@ export default function Game() {
       .then((res) => res.json())
       .then((data) => {
         setQuestions(data); // data is an array of questions!
-        setLoading(false);
         console.log(data);
       })
       .catch((err) => console.error(err));
