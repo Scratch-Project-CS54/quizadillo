@@ -35,7 +35,7 @@ export default function Login() {
 
   return (
     <div className={styles.login}>
-      <h1>
+      <h1 className={styles.title}>
         quizadillo <br />
         {action}
       </h1>
@@ -44,9 +44,9 @@ export default function Login() {
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <button type="submit">{action}</button>
 
-        <div>
+        <div className={styles.signContainer}>
           {action === 'Sign Up' ? (
-            <p>
+            <p className={styles.account}>
               Already have an account?{' '}
               <button type="button" onClick={() => setAction('Log In')}>
                 Log In

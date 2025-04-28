@@ -7,9 +7,24 @@
   color: #94165c;
 }
 
+.title {
+  display: flex;
+  justify-content: center;
+  color: #94165c;
+}
+
 .scoreBoard {
   width: 80%;
-  margin-top: 20px;
+  margin: 20px auto 0 auto; /* center horizontally */
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.breakdown {
+  width: 80%;
+  margin: 20px auto 0 auto; /* center horizontally */
   border-collapse: collapse;
   background-color: #ffffff;
   border-radius: 8px;
@@ -88,10 +103,30 @@
 
 .page {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 80px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   min-height: 100vh;
   padding: 50px;
+  padding-left: 320px;
   background-color: #f5e9dd;
+}
+
+.scoreBoard,
+.breakdown {
+  width: 80%;
+  margin: 20px auto; /* ✅ centers horizontally */
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.scoreBoard,
+.scoreBoard th,
+.scoreBoard td,
+.breakdown,
+.breakdown th,
+.breakdown td {
+  border: 1px solid #94165c; /* ✅ adds grid lines */
 }
