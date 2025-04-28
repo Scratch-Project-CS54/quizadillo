@@ -20,7 +20,10 @@
   "homepage": "https://github.com/pink-fairy-armadillos-54/quizadillo#readme",
   "description": "",
   "dependencies": {
+<<<<<<< HEAD
     "bcrypt": "^5.1.1",
+=======
+>>>>>>> aaabb58 (game page done, pending for test)
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "eslint": "^9.25.1",
