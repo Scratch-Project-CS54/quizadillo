@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import QuestionCard from '../questioncard/questioncard';
+import QuestionCard from '../questionCard/QuestionCard.jsx';
 import styles from './game.module.css';
 
 export default function Game() {
@@ -27,19 +27,13 @@ export default function Game() {
     if (answer === questions[currentQuestionIndex].correct_answer)
       setScore((prev) => prev + 1);
 
-    setCurrentQuestionIndex((prev) => prev + 1);
-  }
-
-  if (currentQuestionIndex >= questions.length)
-    return <h2>Game Over! Final Score: {score}</h2>;
+  if (loading) return <h2>Loading Questions...</h2>;
+  if (currentQuestionIndex >= questions.length) return <h2>Game Over! Final Score: {score}</h2>;
 
   return (
     <div>
-      <QuestionCard
-        questionObj={questions[currentQuestionIndex]}
-        handleAnswer={handleAnswer}
-      />
-
+      <h1 className={styles.Title}>Trivia Game</h1>
+      <QuestionCard questionData={questions[currentQuestionIndex]} handleAnswer={handleAnswer} />
       <p>Score: {score}</p>
     </div>
   );
