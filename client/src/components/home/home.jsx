@@ -27,7 +27,7 @@ export default function Home() {
       <aside className={styles.btns}>
         <button type="button" onClick={(lsbtnHandleClick)}>Login/Sign-Up</button>
         <button type ="button" onClick={(homeHandleClick)}>Home</button>
-        <button type ="button" onClick={(profileHandleClick)}>HMy Profile</button>
+        <button type ="button" onClick={(profileHandleClick)}>My Profile</button>
         <button type ="button" onClick={(startHandleClick)}>Start Game</button>
       </aside>
 
