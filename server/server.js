@@ -1,10 +1,13 @@
-import express from 'express';   
+import express from 'express';
 import dotenv from 'dotenv';
-import triviaRoutes from './routes/triviaRoutes.js';  
+import triviaRoutes from './routes/triviaRoutes.js';
 
 dotenv.config();
 
-const app = express();  
+const app = express();
+
+import cors from 'cors';
+app.use(cors());
 
 // Middleware
 app.use(express.json());
