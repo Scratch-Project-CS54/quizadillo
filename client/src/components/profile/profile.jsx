@@ -10,7 +10,7 @@ export default function Profile() {
   useEffect(() => {
     const fetchQuizResults = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/trivia/getResults');
+        const response = await fetch('http://localhost:4000/api/trivia/getResults');
         if (!response.ok) {
           throw new Error('Failed to fetch quiz results');
         }

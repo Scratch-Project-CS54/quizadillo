@@ -1,11 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './login.module.css';
 
 export default function Login() {
   const [action, setAction] = useState('Sign Up');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -24,10 +26,13 @@ export default function Login() {
       }
       const data = await res.json();
       console.log(`${action} success!`, data);
+
+      navigate('/');
     } catch (err) {
       console.error(`Error in ${action}`, err);
     }
   }
+
   return (
     <div className={styles.login}>
       <h1>
@@ -36,17 +41,23 @@ export default function Login() {
       </h1>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <button type="submit">{action}</button>
 
         <div>
           {action === 'Sign Up' ? (
             <p>
-              Alreay have an account? <button onClick={() => setAction('Log In')}>Log In</button>
+              Already have an account?{' '}
+              <button type="button" onClick={() => setAction('Log In')}>
+                Log In
+              </button>
             </p>
           ) : (
             <p>
-              New here? <button onClick={() => setAction('Sign Up')}>Sign Up</button>
+              New here?{' '}
+              <button type="button" onClick={() => setAction('Sign Up')}>
+                Sign Up
+              </button>
             </p>
           )}
         </div>

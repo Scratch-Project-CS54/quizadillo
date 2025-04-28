@@ -21,10 +21,6 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/api/signup', (req, res) => {
-  res.json({ message: 'sign up successful' });
-});
-
 // Routes
 app.use('/api', loginRoute);
 app.use('/', triviaRoute);
@@ -32,6 +28,7 @@ app.use('/', triviaRoute);
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
+      dbName: 'Quizadillo',
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
