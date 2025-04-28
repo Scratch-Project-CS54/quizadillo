@@ -30,9 +30,6 @@ export default function Game() {
     setCurrentQuestionIndex((prev) => prev + 1);
   }
 
-  if (currentQuestionIndex >= questions.length)
-    return <h2>Game Over! Final Score: {score}</h2>;
-
   return (
     <div>
       <QuestionCard
