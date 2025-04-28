@@ -17,10 +17,10 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/game' element={<Game />} />
-          <Route path='/login' element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/game" element={<Game />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </Router>

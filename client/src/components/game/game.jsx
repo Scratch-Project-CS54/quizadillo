@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import QuestionCard from '../questioncard/questioncard';
-import styles from './game.module.css';
+//import styles from './game.module.css';
 
 export default function Game() {
   const [questions, setQuestions] = useState([]); // store list of all fetched questions
