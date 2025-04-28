@@ -1,12 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 
-import triviaController from './routes/triviaController.js';
-import loginRoute from './routes/loginRoute.js';
 
 dotenv.config();
 
 const app = express();
+
 
 app.use(express.json());
 
