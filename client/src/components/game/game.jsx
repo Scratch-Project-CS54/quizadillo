@@ -39,7 +39,7 @@
 // }
 import React, { useEffect, useState } from 'react';
 import QuestionCard from '../questioncard/questioncard';
-// import styles from './game.module.css';
+import styles from './game.module.css';
 
 export default function Game() {
   const [questions, setQuestions] = useState([]); // store list of all fetched questions
@@ -95,14 +95,40 @@ export default function Game() {
     setCurrentQuestionIndex((prev) => prev + 1);
   }
 
+  async function handleAnswerSubmit(answer) {
+    const url = 'http://localhost:4000/questions';
+    const body = { ...questions[currentQuestionIndex], userAnswer: answer };
+
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) {
+        throw new Error('Submit answer failed!');
+      }
+
+      const data = await res.json();
+      console.log('Submit answer success!', data);
+    } catch (err) {
+      console.error('Error in submitting answer', err);
+    }
+  }
+
   if (loading) return <p>Loading questions...</p>;
 
   if (currentQuestionIndex >= questions.length) return <p>Game over! Your score: {score}</p>;
 
   return (
     <div>
-      <QuestionCard questionObj={questions[currentQuestionIndex]} handleAnswer={handleAnswer} />
-      <p>Score: {score}</p>
+      <QuestionCard
+        questionObj={questions[currentQuestionIndex]}
+        handleAnswer={handleAnswer}
+        handleAnswerSubmit={handleAnswerSubmit}
+      />
+      <p className={styles.score}>Score: {score}</p>
     </div>
   );
 }

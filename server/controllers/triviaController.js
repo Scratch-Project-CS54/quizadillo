@@ -1,28 +1,28 @@
 import express from 'express';
+import QuizResult from '../models/historyModel.js';
 const router = express.Router();
 
 const triviaController = {};
 
-//this will pull new questions
-triviaController.getQuestions = async (req, res) => {
+triviaController.saveHistory = async (req, res, next) => {
+  const { question, userAnswer, correctAnswer } = req.body;
   try {
-    const amount = req.query.amount || process.env.DEFAULT_TRIVIA_AMOUNT;
-    const difficulty = req.query.difficulty || process.env.DEFAULT_TRIVIA_DIFFICULTY;
-    const type = req.query.type || process.env.DEFAULT_TRIVIA_TYPE;
+    const newHistory = new QuizResult({ question, userAnswer, correctAnswer });
+    await newHistory.save();
+    return res.status(200).json({ result: newHistory });
+  } catch (err) {
+    console.log('error in saveHistory:', err.message);
+    return next({ err: `triviaController.saveHistory failed: ${err.message}` });
+  }
+};
 
-    const url = `${process.env.TRIVIA_API_BASE_URL}?amount=${amount}&difficulty=${difficulty}&type=${type}`;
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch trivia questions');
-    }
-
-    const data = await response.json();
-    res.json(data.results);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error fetching trivia questions' });
+triviaController.getHistory = async (req, res, next) => {
+  try {
+    const history = await QuizResult.find({});
+    res.status(200).json(history);
+  } catch (err) {
+    console.log('error in getHistory:', err.message);
+    return res.status(500).json({ error: 'Failed to get answer history' });
   }
 };
 
