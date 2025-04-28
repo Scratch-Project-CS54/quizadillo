@@ -1,24 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './home.modules.css';
+import styles from './home.module.css';
 
 export default function Home() {
   const navigate = useNavigate();
 
   const lsbtnHandleClick = () => {
-    navigate('../login/login.jsx');
+    navigate('/login');
   };
 
   const homeHandleClick = () => {
-    navigate('./home.jsx');
+    navigate('/');
   };
 
   const profileHandleClick = () => {
-    navigate('../profile/profile.jsx');
+    navigate('/profile');
   };
 
   const startHandleClick = () => {
-    navigate('../game/game.jsx');
+    navigate('/game');
   };
 
   return (
@@ -28,7 +28,7 @@ export default function Home() {
         <button type="button" onClick={(lsbtnHandleClick)}>Login/Sign-Up</button>
         <button type ="button" onClick={(homeHandleClick)}>Home</button>
         <button type ="button" onClick={(profileHandleClick)}>HMy Profile</button>
-        <button type ="button" onClick={(startHandleClick)}>HStart Game</button>
+        <button type ="button" onClick={(startHandleClick)}>Start Game</button>
       </aside>
 
       <main className={styles.mainContent}>
