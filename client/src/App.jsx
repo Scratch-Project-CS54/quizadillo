@@ -7,6 +7,7 @@ import Profile from './components/profile/profile';
 import Game from './components/game/game';
 // import Login from './components/login/login';
 import Home from './components/home/home';
+import Navbar from './components/navbar/navbar';
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -14,6 +15,7 @@ function App() {
   return (
     <Router>
       <div>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
