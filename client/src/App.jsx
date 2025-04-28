@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 // import { useState } from 'react';
+=======
+
+>>>>>>> a43a3df (conflict done)
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import './App.css';
