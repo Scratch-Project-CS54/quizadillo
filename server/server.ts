@@ -25,20 +25,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', loginRoute);
 app.use('/', triviaRoute);
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: 'Quizadillo',
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('👌👌 MongoDB connected');
-  } catch (error) {
-    console.log('👎🏻👎🏻 MongoDB connection error:', error.message);
-    throw new Error('MongoDB connection failed');
-  }
-};
-connectDB();
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect(process.env.MONGODB_URI, {
+//       dbName: 'Quizadillo',
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     });
+//     console.log('👌👌 MongoDB connected');
+//   } catch (error) {
+//     console.log('👎🏻👎🏻 MongoDB connection error:', error.message);
+//     throw new Error('MongoDB connection failed');
+//   }
+// };
+// connectDB();
 
 // Listener
 const PORT = process.env.PORT || 4000;
