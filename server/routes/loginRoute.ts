@@ -3,7 +3,7 @@ import loginController from '../controllers/loginController.js';
 const router = express.Router();
 
 //route to signup for new user
-router.post('/signup', loginController.createUser, (req, res) =>{
+router.post('/signup', loginController.createUser, (req:Request, res) =>{
     res.status(201).json({ login: res.locals.newLogin });
 });
 
