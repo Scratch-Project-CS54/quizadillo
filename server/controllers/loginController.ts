@@ -18,7 +18,7 @@ getAllUsers : async (req: Request, res: Response) => {
     }
 },
 
-//create user
+//!create user
 // createUser : async(req: Request, res: Response, next: NextFunction): Promise <NextFunction | undefined | Response | void>=> {
 //     try{
 //         const { username, password } = req.body;
