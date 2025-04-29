@@ -11,5 +11,6 @@ router.post('/signup', loginController.createUser, (req:Request, res:Response) =
 router.post('/login', loginController.verifyUser, (req: Request, res: Response) => {
     return res.status(200).json(res.locals.login);
 });
+//smartcommit addition
 
 export default router;
