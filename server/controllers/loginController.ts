@@ -1,6 +1,9 @@
 import Login from '../models/loginModel.js';
 import { Response, Request, NextFunction } from 'express';
 
+interface SessionInterface extends Request {
+    session: any
+  }
 const loginController = {
 
 //this will get all users from the login database
@@ -16,7 +19,67 @@ getAllUsers : async (req: Request, res: Response) => {
 },
 
 //create user
-createUser : async(req: Request, res: Response, next: NextFunction): Promise <NextFunction | undefined | Response | void>=> {
+// createUser : async(req: Request, res: Response, next: NextFunction): Promise <NextFunction | undefined | Response | void>=> {
+//     try{
+//         const { username, password } = req.body;
+//         if (!username || !password){return next({err: 'missing username or password in request body'})};
+//         if (password.length < 6){return res.status(400).json({err: 'password must be at least 6 characters long'})}
+//         const newLogin = new Login({ username, password });
+//         await newLogin.save();
+
+//         res.locals.newLogin = newLogin;
+//         return res.status(201).json({ login: newLogin });
+//     }
+//     catch (err: any){
+//         console.log('error in createUser:', err.message)
+//         return next({err: `loginController.createUser failed: ${err.message}`});
+//     };
+// },
+
+
+
+//verify the user to login
+
+  
+    // verifyUser : async(req: SessionInterface, res: Response, next: NextFunction) => {
+    //     const { username, password} = req.body;
+    //     try{
+    //         const existing = await Login.findOne({username, password});
+    //         if(!existing){return res.status(401).json({message: 'invalid user or password'})};      
+    //         req.session = {username};
+    //         res.locals.login = existing;
+    //         return res.status(200).json({login: existing});
+    //     }
+    //     catch(err: any){return next({err: `loginController.verifyUser failed ${err.message}`})};
+    // }
+
+    verifyUser : async(req: SessionInterface, res: Response, next: NextFunction)  => {
+
+        const { username, password} = req.body;
+
+            if (!username || !password) throw new Error ('missing user or password')
+
+        try{
+            const existing = await Login.findOne({username, password});
+
+            if(!existing) res.status(400).json('User not found');      
+
+            res.locals.login = existing;
+            return next()
+
+        }catch(err: unknown) {
+            if (err instanceof Error) throw new Error(`Error ${err.message}`)
+            else throw new Error('There was an eror fetching your account')    
+        }
+
+    
+    },
+
+
+
+
+
+createUser : async(req: Request, res: Response, next: NextFunction): Promise <NextFunction | undefined | Response | void|any>=> {
     try{
         const { username, password } = req.body;
         if (!username || !password){return next({err: 'missing username or password in request body'})};
@@ -25,27 +88,14 @@ createUser : async(req: Request, res: Response, next: NextFunction): Promise <Ne
         await newLogin.save();
 
         res.locals.newLogin = newLogin;
-        return res.status(201).json({ login: newLogin });
+        return next()
     }
     catch (err: any){
         console.log('error in createUser:', err.message)
         return next({err: `loginController.createUser failed: ${err.message}`});
     };
-},
-
-//verify the user to login
-verifyUser : async(req: Request, res: Response, next: NextFunction) => {
-    const { username, password} = req.body;
-    try{
-        const existing = await Login.findOne({username, password});
-        if(!existing){return res.status(401).json({message: 'invalid user or password'})};
-        
-        req.session = {username};
-        res.locals.login = existing;
-        return res.status(200).json({login: existing});
-    }
-    catch(err: any){return next({err: `loginController.verifyUser failed ${err.message}`})};
 }
-
 };
+
+
 export default loginController;
