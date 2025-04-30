@@ -24,8 +24,8 @@ const triviaController = {
   },
 
   getHistory: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    
     try {
-
       const history = await History.find({});
       res.locals.history = history;
       next();

@@ -38,7 +38,7 @@
 //   );
 // }
 import React, { useEffect, useState } from 'react';
-import QuestionCard from '../questioncard/questioncard';
+import QuestionCard from '../questionCard/QuestionCard';
 import styles from './game.module.css';
 
 export default function Game() {
