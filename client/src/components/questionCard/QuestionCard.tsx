@@ -1,6 +1,21 @@
 import styles from './questioncard.module.css';
 
-const QuestionCard = ({ questionObj, handleAnswer, handleAnswerSubmit }) => {
+type questionObj = {
+  incorrect_answers: string[];
+} & {
+  [key: string]: string;
+}
+
+type QuestionCardtype = {
+  questionObj: questionObj;
+  handleAnswer: any;
+  handleAnswerSubmit: any;
+}
+
+const QuestionCard: React.FC<QuestionCardtype> = ({ questionObj, handleAnswer, handleAnswerSubmit }) => {
+  console.log('questionObj', questionObj)
+  console.log('handleAnswer', handleAnswer)
+  console.log('handleAnswerSubmit', handleAnswerSubmit)
   if (!questionObj) return <h2>Loading...</h2>;
   const { question, correct_answer, incorrect_answers } = questionObj;
 

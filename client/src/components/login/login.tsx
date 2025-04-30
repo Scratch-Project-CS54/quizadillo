@@ -9,7 +9,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e:React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const url = action === 'Sign Up' ? 'http://localhost:4000/api/signup' : 'http://localhost:4000/api/login';
 
