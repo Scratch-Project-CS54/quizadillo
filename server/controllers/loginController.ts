@@ -2,7 +2,7 @@ import Login from '../models/loginModel.js';
 import { Response, Request, NextFunction } from 'express';
 
 interface SessionInterface extends Request {
-    session: any
+    session?: any
   }
 const loginController = {
 
@@ -53,19 +53,20 @@ getAllUsers : async (req: Request, res: Response) => {
     //     catch(err: any){return next({err: `loginController.verifyUser failed ${err.message}`})};
     // }
 
-    verifyUser : async(req: SessionInterface, res: Response, next: NextFunction)  => {
+    verifyUser : async(req: SessionInterface, res: Response, next: NextFunction): Promise<void>  => {
 
         const { username, password} = req.body;
 
-            if (!username || !password) throw new Error ('missing user or password')
+            if (!username || !password) next( new Error ('missing user or password'));
 
         try{
             const existing = await Login.findOne({username, password});
 
-            if(!existing) res.status(400).json('User not found');      
+            if(!existing) res.status(400).json({error: 'User not found'});      
 
             res.locals.login = existing;
-            return next()
+            next()
+            return;
 
         }catch(err: unknown) {
             if (err instanceof Error) throw new Error(`Error ${err.message}`)
@@ -79,20 +80,26 @@ getAllUsers : async (req: Request, res: Response) => {
 
 
 
-createUser : async(req: Request, res: Response, next: NextFunction): Promise <NextFunction | undefined | Response | void|any>=> {
+createUser : async(req: Request, res: Response, next: NextFunction): Promise <void>=> {
     try{
         const { username, password } = req.body;
-        if (!username || !password){return next({err: 'missing username or password in request body'})};
-        if (password.length < 6){return res.status(400).json({err: 'password must be at least 6 characters long'})}
+        if (!username || !password){
+            next({err: 'missing username or password in request body'})
+            return };
+        if (password.length < 6){
+        res.status(400).json({err: 'password must be at least 6 characters long'})
+        return }
         const newLogin = new Login({ username, password });
         await newLogin.save();
 
         res.locals.newLogin = newLogin;
-        return next()
+        next()
+        return 
     }
     catch (err: any){
         console.log('error in createUser:', err.message)
-        return next({err: `loginController.createUser failed: ${err.message}`});
+         next({err: `loginController.createUser failed: ${err.message}`});
+         return
     };
 }
 };
