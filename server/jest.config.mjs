@@ -66,7 +66,12 @@ const config = {
   // globalTeardown: undefined,
 
   // A set of global variables that need to be available in all test environments
-  // globals: {},
+  globals: {
+    'ts-jest': {
+      useESM: true,
+    },
+  },
+  
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
@@ -89,7 +94,9 @@ const config = {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '^(.{1,2}/.*)\\.js$': '$1',
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -101,7 +108,7 @@ const config = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  preset: 'ts-jest/presets/default-esm',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -174,7 +181,9 @@ const config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {
+    '^.+\\.(t|j)sx?$': ['ts-jest', { useESM: true }],
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -193,6 +202,28 @@ const config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
+  // extensionsToTreatAsEsm: ['.ts', '.tsx', '.jsx'],
 };
 
 export default config;
+
+// export default {
+//   // Other configurations
+
+//   moduleNameMapper: {
+//     '^(.{1,2}/.*)\\.js$': '$1',
+//   },
+
+//   transform: {
+//     '^.+\\.(t|j)sx?$': ['ts-jest', { useESM: true }],
+//   },
+
+//   preset: 'ts-jest/presets/default-esm',
+
+//   globals: {
+//     'ts-jest': {
+//       useESM: true,
+//     },
+//   },
+// };
