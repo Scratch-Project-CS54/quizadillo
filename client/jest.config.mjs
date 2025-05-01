@@ -15,6 +15,7 @@ const config = {
   setupFilesAfterEnv: ['@testing-library/jest-dom'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    '@^../home$': '<rootDir>/src/components/home/home.tsx',
   },
 };
 

@@ -7,6 +7,8 @@ import Home from '../home';
 import styles from './home.module.css';
 console.log('Home', Home);
 
+// <Home />
+
 // const HomeElement = '..home'
 const testHome = Home(); //need to invoke the function, store it in the variable and render the result
 describe('Home component', () => {
