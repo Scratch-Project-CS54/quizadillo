@@ -38,14 +38,34 @@
 //   );
 // }
 import React, { useEffect, useState } from 'react';
-import QuestionCard from '../questioncard/questioncard';
+import QuestionCard from '../questionCard/QuestionCard';
 import styles from './game.module.css';
 
+// category
+// : 
+// "Entertainment: Cartoon &amp; Animations"
+// correct_answer
+// : 
+// "Miranda Wright"
+// difficulty
+// : 
+// "easy"
+// incorrect_answers
+// : 
+// (3) ['Dick Tracy', 'Eddie Valiant', 'Dr. Ludwig von Drake']
+// question
+// : 
+// "In the 1993 Disney animated series &quot;Bonkers&quot;, what is the name of Bonker&#039;s second partner?"
+// type
+// : 
+// "multiple"
+
+
 export default function Game() {
-  const [questions, setQuestions] = useState([]); // store list of all fetched questions
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [questions, setQuestions] = useState<any[]>([]); // store list of all fetched questions
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const [score, setScore] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getQuestions();
@@ -65,37 +85,28 @@ export default function Game() {
       }
 
       const data = await response.json();
-
-      // const dummyQuestions = [
-      //   {
-      //     question: "What is the capital of France?",
-      //     correct_answer: "Paris",
-      //     incorrect_answers: ["London", "Berlin", "Rome"]
-      //   },
-      //   {
-      //     question: "Who painted the Mona Lisa?",
-      //     correct_answer: "Leonardo da Vinci",
-      //     incorrect_answers: ["Vincent Van Gogh", "Pablo Picasso", "Claude Monet"]
-      //   }
-      // ];
-
-      // setQuestions(dummyQuestions);
-
+      console.log(data)
+      
       setLoading(false);
+      
       setQuestions(data.results);
+
     } catch (err) {
+
       console.error(err);
     }
   }
 
-  function handleAnswer(answer) {
+  function handleAnswer(answer:string) {
+    console.log(answer)
+    console.log(questions)
     if (answer === questions[currentQuestionIndex]?.correct_answer) {
       setScore((prev) => prev + 1);
     }
     setCurrentQuestionIndex((prev) => prev + 1);
   }
 
-  async function handleAnswerSubmit(answer) {
+  async function handleAnswerSubmit(answer:string) {
     const url = 'http://localhost:4000/questions';
     const body = {
       question: questions[currentQuestionIndex]?.question,

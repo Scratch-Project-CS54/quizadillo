@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styles from './profile.module.css';
 
 export default function Profile() {
-  const [quizResult, setQuizResult] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [quizResult, setQuizResult] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<null | any>(null);
 
   //! will need to fetch from database the number of questions the right questions etc.
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Profile() {
         console.log(data);
         setQuizResult(data);
         console.log(quizResult);
-      } catch (err) {
+      } catch (err: any) {
         console.error('Error fetching quiz result:', err);
         setError(err.message);
       } finally {
@@ -52,7 +52,7 @@ export default function Profile() {
           </tr>
         </thead>
         <tbody>
-          {quizResult.map((item, index) => (
+          {quizResult.map((item: any, index:any) => (
             <tr key={index}>
               <td>{item.question}</td>
               <td>{item.userAnswer}</td>
