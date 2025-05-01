@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component renders correctly 1`] = `
+<div>
+  <div
+    class="page"
+  >
+    <main
+      class="mainContent"
+    >
+      <h1
+        class="title"
+      >
+        Quizadillo
+      </h1>
+      <img
+        alt="Quizadillo Logo"
+        class="logo"
+        src="/logo.png"
+      />
+      <p
+        class="tagLine"
+      >
+        Get better at Trivia — Impress those worth impressing!
+      </p>
+    </main>
+  </div>
+</div>
+`;

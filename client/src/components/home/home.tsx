@@ -1,8 +1,10 @@
-import React from 'react';
+// import type { FC } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import styles from './home.module.css';
 
-export default function Home() {
+import type { ReactElement } from 'react'; //import JSX namespace to give Home a type
+
+export default function Home(): ReactElement {
   // const navigate = useNavigate();
 
   // const lsbtnHandleClick = () => {
@@ -33,8 +35,10 @@ export default function Home() {
 
       <main className={styles.mainContent}>
         <h1 className={styles.title}>Quizadillo</h1>
-        <img className={styles.logo} src="/logo.png" alt="Quizadillo Logo" />
-        <p className={styles.tagLine}>Get better at Trivia — Impress those worth impressing!</p>
+        <img className={styles.logo} src='/logo.png' alt='Quizadillo Logo' />
+        <p className={styles.tagLine}>
+          Get better at Trivia — Impress those worth impressing!
+        </p>
       </main>
     </div>
   );
