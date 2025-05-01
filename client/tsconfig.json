@@ -16,7 +16,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["jest", "@testing-library/jest-dom"],
+    "types": ["jest", "@testing-library/jest-dom", "node"],
     "allowSyntheticDefaultImports": true,
     //"allowImportingTsExtensions": true,
     /* Skip type checking .d.ts files that are included with TypeScript. */

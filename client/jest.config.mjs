@@ -12,7 +12,9 @@ const config = {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  setupFilesAfterEnv: ['@testing-library/jest-dom'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  //'@testing-library/jest-dom'
+  // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '@^../home$': '<rootDir>/src/components/home/home.tsx',
@@ -20,7 +22,7 @@ const config = {
 };
 
 export default config;
-// moduleNameMapper: {
+// // moduleNameMapper: {
 //   '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
 //   '^@/(.*)$': '<rootDir>/src/$1',
 //   //'^../home$': '<rootDir>/src/components/home/home.tsx',

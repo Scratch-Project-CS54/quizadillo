@@ -10,21 +10,21 @@ console.log('Home', Home);
 // <Home />
 
 // const HomeElement = '..home'
-const testHome = Home(); //need to invoke the function, store it in the variable and render the result
+//const testHome = Home(); //need to invoke the function, store it in the variable and render the result
 describe('Home component', () => {
   it('renders correctly', () => {
-    const { container } = render(testHome);
+    const { container } = render(<Home />);
     expect(container).toMatchSnapshot();
   });
   it('renders the title correctly', () => {
-    const { getByText } = render(testHome);
+    const { getByText } = render(<Home />);
     expect(getByText('Quizadillo')).toBeInTheDocument();
   });
   it('renders quizadillo logo', () => {
-    const container = render(testHome);
+    const { container } = render(<Home />);
     const imgAlt = screen.getByAltText('Quizadillo Logo');
-    console.log('CONTAINER', container);
-    console.log('hi');
+    //console.log('CONTAINER', container);
+    //console.log('hi');
     expect(imgAlt).toBeInTheDocument();
   });
 });
