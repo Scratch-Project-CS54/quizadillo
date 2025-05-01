@@ -25,12 +25,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', loginRoute);
 app.use('/', triviaRoute);
 
-const connectDB = async () => {
+ export const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI as string, {
       dbName: 'Quizadillo',
     });
-    console.log('👌👌 MongoDB connected');
+    const success = '👌👌 MongoDB connected'
+    console.log(success)
+    return success;
     
   } catch (err: unknown) {
     if (err instanceof Error) throw new Error(`Error ${err.message}`);
@@ -44,5 +46,3 @@ const PORT = 4000;
 app.listen(PORT, '0.0.0.0', () =>
   console.log(`🎁🎁🎁 Server running on port ${PORT}`)
 );
-
-export {};
