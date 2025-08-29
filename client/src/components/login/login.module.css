@@ -4,3 +4,90 @@ body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #f5e9dd;
 }
+
+.page {
+  min-height: 100vh;
+  padding-left: 170px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5e9dd;
+}
+
+.loginBox {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border: 3px solid #a2425e;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  text-align: center;
+  color: #94165c;
+  font-size: 2rem;
+}
+
+.account {
+  color: #a2425e;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+
+.input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #a2425e;
+  font-size: 1rem;
+}
+
+.submitBtn {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fbe1eb;
+  color: #a2425e;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #f77daa;
+  color: white;
+}
+
+.switchAction {
+  text-align: center;
+}
+
+.switchBtn {
+  background: none;
+  border: none;
+  color: #a2425e;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.switchBtn:hover {
+  text-decoration: underline;
+}
+
+.signContainer {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}

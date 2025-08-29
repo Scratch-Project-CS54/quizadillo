@@ -3,24 +3,6 @@ import React from 'react';
 import styles from './home.module.css';
 
 export default function Home() {
-  // const navigate = useNavigate();
-
-  // const lsbtnHandleClick = () => {
-  //   navigate('/login');
-  // };
-
-  // const homeHandleClick = () => {
-  //   navigate('/');
-  // };
-
-  // const profileHandleClick = () => {
-  //   navigate('/profile');
-  // };
-
-  // const startHandleClick = () => {
-  //   navigate('/game');
-  // };
-
   return (
     <div className={styles.page}>
       {/*prettier-ignore*/}
